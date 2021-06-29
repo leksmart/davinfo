@@ -86,29 +86,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>The David informatics: About this site</title>
+  <title>The David informatics: Weekly Progress Update</title>
 
-  <meta property="description" itemprop="description" content="Some additional details about the website"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="The David informatics: About this site"/>
+  <meta property="og:title" content="The David informatics: Weekly Progress Update"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Some additional details about the website"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="The David informatics"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="The David informatics: About this site"/>
-  <meta property="twitter:description" content="Some additional details about the website"/>
+  <meta property="twitter:title" content="The David informatics: Weekly Progress Update"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About this site"]},{"type":"character","attributes":{},"value":["Some additional details about the website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","description","listing"]}},"value":[{"type":"character","attributes":{},"value":["Weekly Progress Update"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["posts"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2048,12 +2045,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 </head>
 
-<body>
+<body class="layout-listing">
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About this site","description":"Some additional details about the website","authors":[]}
+{"title":"Weekly Progress Update","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2089,17 +2086,7 @@ Academics
 <a href="https://www.linkedin.com/in/adeleke-david-119b9582/">CSCI 800</a>
 </div>
 </div>
-<div class="nav-dropdown">
-<button class="nav-dropbtn">
-Hackathon
- 
-<span class="down-arrow">&#x25BE;</span>
-</button>
-<div class="nav-dropdown-content">
-<a href="steet.html">NIH-codeathon</a>
-<a href="https://www.linkedin.com/in/adeleke-david-119b9582/">Others</a>
-</div>
-</div>
+<a href="codeathon.html">Codeathon</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Projects
@@ -2122,16 +2109,250 @@ Projects
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
+<!--radix_placeholder_article_listing-->
+
+
+<script type="application/javascript">
+
+function init_posts_list() {
+
+  function load_image(img) {
+    var src = $(img).attr('data-src');
+    if (src) {
+      $(img).attr('src', src);
+      $(img).load(function() {
+        img.removeAttribute('data-src');
+      });
+    }
+  }
+
+  function set_posts_visible(posts, visible) {
+    if (visible) {
+
+      // show bottom border by default
+      $(posts).removeClass('post-preview-last');
+
+      // apply limits if need be
+      var max_posts = 25;
+      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
+      if (apply_limits && posts.length > max_posts) {
+        posts = $(posts).slice(0, max_posts);
+      } else {
+        $('.posts-more a').addClass('hidden');
+      }
+
+      // apply last style
+      $(posts.slice(-1)[0]).addClass('post-preview-last');
+
+      $(posts).removeClass('hidden');
+      $(posts).find('img[data-src]').each(function(i, img) {
+        load_image(img);
+      });
+    } else {
+      $(posts).addClass('hidden');
+    }
+  }
+
+  function apply_hash_filter() {
+
+    // clear active state
+    $('.categories .active').removeClass('active');
+
+    // mark all posts invisible to start
+    set_posts_visible($('.posts-list').children('a'), false);
+
+    // if we have a hash filter
+    if (window.location.hash && window.location.hash.startsWith("#category:")) {
+
+      // mark posts that match the category visible
+      var page_category = window.location.hash.replace(/^#category:/, "");
+      var posts = $('.post-metadata').map(function(idx, script) {
+        var metadata = $.parseJSON($(script).html());
+        var post = null;
+        $.each(metadata.categories, function(idx, category) {
+          category = category.replace(/ /g,"_");
+          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
+            post = $(script).parent().get();
+            return false;
+          }
+        });
+        return post;
+      });
+      set_posts_visible(posts, true);
+
+      // mark the hash active
+      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
+
+      // update the list_caption
+      var list_caption = $('.posts-list-caption');
+      var caption = (page_category || '').toLowerCase() === "articles"
+        ? list_caption.attr('data-caption')
+        : ('Category: ' + page_category.replace(/_/g," "));
+      list_caption.text(caption);
+
+    } else {
+
+      // no hash filter, make all posts visible (subject to max display)
+      set_posts_visible($('.posts-list').children(), true);
+
+      // reset list caption
+      var list_caption = $('.posts-list-caption');
+      list_caption.text(list_caption.attr('data-caption'));
+
+
+    }
+  }
+
+  // more articles
+  function apply_post_limits(apply) {
+    if (apply) {
+      $('.posts-container').addClass('posts-apply-limit');
+      $('.posts-more a').removeClass('hidden');
+    } else {
+      $('.posts-container').removeClass('posts-apply-limit');
+      $('.posts-more a').addClass('hidden');
+    }
+  }
+
+  // click handling for tags
+  $('.dt-tag').click(function(ev) {
+    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
+    return false;
+  })
+
+  // hash filter handling
+  apply_hash_filter();
+  $(window).on('hashchange',function() {
+    apply_post_limits(true);
+    apply_hash_filter();
+  });
+
+  // more articles link
+  $('.posts-more a').click(function(e) {
+    e.preventDefault();
+    apply_post_limits(false);
+    apply_hash_filter();
+    return false;
+  });
+
+}
+
+</script>
+
+
+
+<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
+<div class="posts-list">
+<h1 class="posts-list-caption" data-caption="Weekly Progress Update">Weekly Progress Update</h1>
+<a href="posts/2021-06-29-cnv-week1/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Multi-omics","Copy Number Variation"]}</script>
+<div class="metadata">
+<div class="publishedDate">June 21, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">David Adeleke</div>
+</div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>cnv1</h2>
+<div class="dt-tags">
+<div class="dt-tag">Multi-omics</div>
+<div class="dt-tag">Copy Number Variation</div>
+</div>
+<p>A short description of the post.</p>
+</div>
+</a>
+<a href="posts/2021-06-29-cnv-week2/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Multi-omics","Survival"]}</script>
+<div class="metadata">
+<div class="publishedDate">June 21, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">David Adeleke</div>
+</div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>cnv2</h2>
+<div class="dt-tags">
+<div class="dt-tag">Multi-omics</div>
+<div class="dt-tag">Survival</div>
+</div>
+<p>A short description of the post.</p>
+</div>
+</a>
+<a href="posts/2021-06-29-cnv-week3/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Multi-omics","Copy Number Variation","Correlations"]}</script>
+<div class="metadata">
+<div class="publishedDate">June 21, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">David Adeleke</div>
+</div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>cnv3</h2>
+<div class="dt-tags">
+<div class="dt-tag">Multi-omics</div>
+<div class="dt-tag">Copy Number Variation</div>
+<div class="dt-tag">Correlations</div>
+</div>
+<p>A short description of the post.</p>
+</div>
+</a>
+</div>
+<div class="posts-sidebar">
+<div class="sidebar-section categories">
+<h3>Categories</h3>
+<ul>
+<li>
+<a href="#category:Articles">Articles</a>
+<span class="category-count">(3)</span>
+</li>
+<li>
+<a href="#category:Copy_Number_Variation">Copy Number Variation</a>
+<span class="category-count">(2)</span>
+</li>
+<li>
+<a href="#category:Correlations">Correlations</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:Multi-omics">Multi-omics</a>
+<span class="category-count">(3)</span>
+</li>
+<li>
+<a href="#category:Survival">Survival</a>
+<span class="category-count">(1)</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="posts-more">
+<a href="#">More articles &raquo;</a>
+</div>
+</div>
+<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>About this site</h1>
+<h1>Weekly Progress Update</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Some additional details about the website</p></p>
+<p>null</p>
 </div>
 
 
 <div class="d-article">
+<p><strong>____________________________________________________________________________</strong></p>
+<p><strong>Multi-omic marker associations in pancreatic cancer</strong></p>
+<p>Identifying important epigenetic changes is a central challenge in the quest to create effective treatment targets or useful biomarker panels which can be used to screen for susceptibilities to complex, multi-factorial diseases like cancer. Developing an understanding of which epigenetic variations are important in developing and progressing disease will enhance our knowledge of disease mechanisms and improve our ability to predict disease and target interventions to high-risk sub-populations. Pancreatic ductal adenocarcinoma (PDAC) has an extremely high mortality/incidence ratio and poor 5-year survival rates about 7%, especially among non-resectable disease where mean survival is 3-6 months.</p>
+<p>For patients with early stage and resectable disease the mean survival is much better at 32 months. Unfortunately, limited progress has been made identifying and validated such epigenetic marker panels for PDAC in the epidemiological setting. Most epigenome-wide studies (EWAS) rely on statistical evidence of effect alone and are often likely to be underpowered to detect modest differences. In this proposed work, we will develop a two-stage multi-omics approach that addresses the limitations of standard EWAS approaches and provides validation of identified key networks. We will apply our approach using tumor samples collected in a clinical setting. We propose to search for differentiated epigenetic and genetic markers focusing on 12 key PDAC driver genes or biological processes when comparing pancreatic cancer patient tumors or patient derived cell lines to control tissue samples using existing datasets. Using the identified network of epigenetic-genetic alterations, we will then test for significance in an independent patient tumor set and build clinical variables into the model.</p>
+<p>We believe there is a great advantage in using publicly available data and exploratory-based methods to analyze multiple types of genomic markers. This step is relatively cost effective and efficient, as a way to improve power and resources in deeper analyses. Additionally with this project, we will be creating a unique, high quality PDAC resource linking tumor genomics and patient characteristics to be used in future research such as projects focused on understanding PDAC progress and tumor treatment response. Our framework has very high potential to be generalized to the analysis of other PDAC samples and other cancers or disease types. Additionally, our results can provide other researchers with a foundation around which to focus resources to create intervention or treatment targets.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

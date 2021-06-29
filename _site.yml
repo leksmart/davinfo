@@ -1,12 +1,36 @@
 name: "davinfo"
-title: "David informatics"
+title: "The David informatics"
 description: |
-  David informatics
+     Welcome to my personal and professional webpage.
 output_dir: "_site"
 navbar:
+  logo:
+    image: images/logo.png
+    href: https://www.linkedin.com/in/adeleke-david-119b9582/
+  search: true
   right:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+      menu:
+      - text: "Biosketch"
+        href: biosketch.html
+    - text: "Academics"
+      menu:
+        - text: "CSCI 719"
+          href: multiomics.html
+        - text: "CSCI 800"
+          href: https://www.linkedin.com/in/adeleke-david-119b9582/
+    - text: "Codeathon"
+      href: codeathon.html
+    - text: "Projects"
+      menu:
+        - text: "Multi-omics"
+          href: multiomics.html
+        - text: "Others"
+          href: https://www.linkedin.com/in/adeleke-david-119b9582/
+        
+    - text: "Publications"
+      href: index.html
+    - icon: fab fa-github
+      href: https://github.com/
 output: distill::distill_article

@@ -1,0 +1,63 @@
+[
+  {
+    "path": "posts/2021-06-29-cnv-week1/",
+    "title": "cnv1",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "David Adeleke",
+        "url": "https://www.linkedin.com/in/adeleke-david-119b9582/"
+      }
+    ],
+    "date": "2021-06-21",
+    "categories": [
+      "Multi-omics",
+      "Copy Number Variation"
+    ],
+    "contents": "\r\nCNV 1\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-06-29T00:14:14-05:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-06-29-cnv-week2/",
+    "title": "cnv2",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "David Adeleke",
+        "url": "https://www.linkedin.com/in/adeleke-david-119b9582/"
+      }
+    ],
+    "date": "2021-06-21",
+    "categories": [
+      "Multi-omics",
+      "Survival"
+    ],
+    "contents": "\r\nCNV 3\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-06-29T00:14:29-05:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-06-29-cnv-week3/",
+    "title": "cnv3",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "David Adeleke",
+        "url": "https://www.linkedin.com/in/adeleke-david-119b9582/"
+      }
+    ],
+    "date": "2021-06-21",
+    "categories": [
+      "Multi-omics",
+      "Copy Number Variation",
+      "Correlations"
+    ],
+    "contents": "\r\nCNV 3\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-06-29T00:14:55-05:00",
+    "input_file": {}
+  }
+]

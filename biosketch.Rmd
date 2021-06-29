@@ -1,0 +1,47 @@
+---
+title: "David Adeleke"
+image: "images/david.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/adeleke-david-119b9582/"
+  - label: Twitter
+    url: "https://twitter.com/adelekdavis"
+  - label: GitHub
+    url: "https://github.com/leksmart"
+  - label: Email
+    url: "mailto:davisadeleke@gmail.com"
+output:
+  postcards::trestles
+---
+ 
+## Bio
+
+David is an experienced public health informatics professional, who has worked in a diverse challenging capacity where he has provided program M&E, research design & data analysis, intelligence reporting, epidemiology surveillance, and project management.
+As part of his doctoral degree requirements in Computational Bioinformatics at NDSU, David is currently working on Identifying important epigenetic changes and useful biomarker panels that can be used to screen for susceptibilities to complex, multi-factorial diseases like cancer.
+
+## Education
+
+**North Dakota State University** | Fargo, ND
+
+Ph.D. in Genomics & Bioinformatics | January 2021 - Till date
+
+**Lagos State University** | Lagos, Nigeria
+
+Masters in Public Health  | September 2018 - Dec 2020
+
+**University of Lagos** | Lagos, Nigeria
+
+M.S. in Biochemistry | January 2016 - May 2017
+
+**Lagos State University** | Lagos, Nigeria
+
+B.S. in Biochemistry | September 2009 - May 2013
+
+## Experience
+
+**COBRE** | Doctoral Research Assistant | January 2018 - Present
+
+**Malaria Consortium ** |Senor M & E Officer | June 2014 - December 2017
+
+**Mediecins Sans Frontieres** | Epidemiology Manager | June 2014 - December 2017
+

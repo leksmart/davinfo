@@ -1,0 +1,23 @@
+---
+title: "Weekly Progress Update"
+site: distill::distill_website
+description: null
+listing: posts
+---
+  
+**____________________________________________________________________________**  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  **Multi-omic marker associations in pancreatic cancer**
+  
+  Identifying important epigenetic changes is a central challenge in the quest to create effective treatment targets or useful biomarker panels which can be used to screen for susceptibilities to complex, multi-factorial diseases like cancer. Developing an understanding of which epigenetic variations are important in developing and progressing disease will enhance our knowledge of disease mechanisms and improve our ability to predict disease and target interventions to high-risk sub-populations. Pancreatic ductal adenocarcinoma (PDAC) has an extremely high mortality/incidence ratio and poor 5-year survival rates about 7%, especially among non-resectable disease where mean survival is 3-6 months. 
+  
+  For patients with early stage and resectable disease the mean survival is much better at 32 months. Unfortunately, limited progress has been made identifying and validated such epigenetic marker panels for PDAC in the epidemiological setting. Most epigenome-wide studies (EWAS) rely on statistical evidence of effect alone and are often likely to be underpowered to detect modest differences. In this proposed work, we will develop a two-stage multi-omics approach that addresses the limitations of standard EWAS approaches and provides validation of identified key networks. We will apply our approach using tumor samples collected in a clinical setting.
+  We propose to search for differentiated epigenetic and genetic markers focusing on 12 key PDAC driver genes or biological processes when comparing pancreatic cancer patient tumors or patient derived cell lines to control tissue samples using existing datasets. Using the identified network of epigenetic-genetic alterations, we will then test for significance in an independent patient tumor set and build clinical variables into the model. 
+  
+  We believe there is a great advantage in using publicly available data and exploratory-based methods to analyze multiple types of genomic markers. This step is relatively cost effective and efficient, as a way to improve power and resources in deeper analyses. Additionally with this project, we will be creating a unique, high quality PDAC resource linking tumor genomics and patient characteristics to be used in future research such as projects focused on understanding PDAC progress and tumor treatment response. Our framework has very high potential to be generalized to the analysis of other PDAC samples and other cancers or disease types. Additionally, our results can provide other researchers with a foundation around which to focus resources to create intervention or treatment targets. 
